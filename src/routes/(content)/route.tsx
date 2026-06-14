@@ -97,23 +97,9 @@ function RouteComponent() {
 						<SidebarMenu>
 							<SidebarMenuItem>
 								<Tooltip>
-									<TooltipTrigger
-										render={
-											<Button
-												variant="ghost"
-												size="icon"
-												render={
-													<a
-														href="https://github.com/omusubi/markdown"
-														target="_blank"
-														rel="noopener"
-													>
-														<SiGithub aria-label="GitHub リポジトリへ (新しいタブで開きます)" />
-													</a>
-												}
-											/>
-										}
-									/>
+									<TooltipTrigger render={<Button variant="ghost" size="icon" />}>
+										<SiGithub aria-label="GitHub リポジトリへ (新しいタブで開きます)" />
+									</TooltipTrigger>
 									<TooltipContent>Github</TooltipContent>
 								</Tooltip>
 							</SidebarMenuItem>
