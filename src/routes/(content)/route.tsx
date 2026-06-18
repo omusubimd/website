@@ -1,6 +1,13 @@
-import { SiGithub } from "@icons-pack/react-simple-icons";
+import { SiDiscord, SiGithub } from "@icons-pack/react-simple-icons";
 import { createFileRoute, Outlet } from "@tanstack/react-router";
-import { LucideEllipsis, LucideExternalLink, LucideGem, LucideSpace, LucideUnderline } from "lucide-react";
+import {
+	LucideAstroid,
+	LucideEllipsis,
+	LucideExternalLink,
+	LucideGem,
+	LucideSpace,
+	LucideUnderline,
+} from "lucide-react";
 import { Button } from "~/components/ui/button";
 import {
 	Sidebar,
@@ -81,12 +88,10 @@ function RouteComponent() {
 							<SidebarGroupContent>
 								<SidebarMenu>
 									<SidebarMenuItem>
-										<SidebarMenuButton>
-											その他の機能
-											<SidebarMenuAction>
-												<LucideExternalLink />
-											</SidebarMenuAction>
-										</SidebarMenuButton>
+										<SidebarMenuButton>その他の機能</SidebarMenuButton>
+										<SidebarMenuAction>
+											<LucideExternalLink />
+										</SidebarMenuAction>
 									</SidebarMenuItem>
 								</SidebarMenu>
 							</SidebarGroupContent>
@@ -95,21 +100,33 @@ function RouteComponent() {
 
 					<SidebarFooter>
 						<SidebarMenu>
-							<SidebarMenuItem>
+							<SidebarMenuItem className="flex flex-row">
 								<Tooltip>
 									<TooltipTrigger render={<Button variant="ghost" size="icon" />}>
-										<SiGithub aria-label="GitHub リポジトリへ (新しいタブで開きます)" />
+										<SiGithub aria-label="Github" />
 									</TooltipTrigger>
-									<TooltipContent>Github</TooltipContent>
+									<TooltipContent>リポジトリ</TooltipContent>
+								</Tooltip>
+
+								<Tooltip>
+									<TooltipTrigger render={<Button variant="ghost" size="icon" />}>
+										<SiDiscord aria-label="Discord" />
+									</TooltipTrigger>
+									<TooltipContent>コミュニティ</TooltipContent>
+								</Tooltip>
+
+								<Tooltip>
+									<TooltipTrigger render={<Button className="ml-auto" variant="ghost" size="icon" />}>
+										<LucideAstroid aria-label="AI" />
+									</TooltipTrigger>
+									<TooltipContent>AI</TooltipContent>
 								</Tooltip>
 							</SidebarMenuItem>
 						</SidebarMenu>
 					</SidebarFooter>
 				</Sidebar>
 
-				<main>
-					<Outlet />
-				</main>
+				<Outlet />
 			</SidebarProvider>
 		</TooltipProvider>
 	);

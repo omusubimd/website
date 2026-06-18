@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as contentRouteRouteImport } from './routes/(content)/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as contentSplatIndexRouteImport } from './routes/(content)/$/index'
 
 const contentRouteRoute = contentRouteRouteImport.update({
   id: '/(content)',
@@ -21,29 +22,37 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const contentSplatIndexRoute = contentSplatIndexRouteImport.update({
+  id: '/$/',
+  path: '/$/',
+  getParentRoute: () => contentRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$/': typeof contentSplatIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$': typeof contentSplatIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/(content)': typeof contentRouteRoute
+  '/(content)': typeof contentRouteRouteWithChildren
+  '/(content)/$/': typeof contentSplatIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/$/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/' | '/(content)'
+  to: '/' | '/$'
+  id: '__root__' | '/' | '/(content)' | '/(content)/$/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  contentRouteRoute: typeof contentRouteRoute
+  contentRouteRoute: typeof contentRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -62,12 +71,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(content)/$/': {
+      id: '/(content)/$/'
+      path: '/$'
+      fullPath: '/$/'
+      preLoaderRoute: typeof contentSplatIndexRouteImport
+      parentRoute: typeof contentRouteRoute
+    }
   }
 }
 
+interface contentRouteRouteChildren {
+  contentSplatIndexRoute: typeof contentSplatIndexRoute
+}
+
+const contentRouteRouteChildren: contentRouteRouteChildren = {
+  contentSplatIndexRoute: contentSplatIndexRoute,
+}
+
+const contentRouteRouteWithChildren = contentRouteRoute._addFileChildren(
+  contentRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  contentRouteRoute: contentRouteRoute,
+  contentRouteRoute: contentRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

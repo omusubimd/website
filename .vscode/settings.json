@@ -31,5 +31,9 @@
 	},
 	"editor.codeActionsOnSave": {
 		"source.fixAll.biome": "always"
-	}
+	},
+	"files.associations": {
+		"*.css": "tailwindcss"
+	},
+	"mdx.server.enable": true
 }
