@@ -1,4 +1,5 @@
 import { mergeProps, useRender } from "@base-ui/react";
+
 import { cn } from "~/lib/utils";
 
 export function P({ render, className, ...props }: useRender.ComponentProps<"p">) {

@@ -1,0 +1,38 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "typescript",
+    "unicorn",
+    "oxc",
+    "react",
+    "jsx-a11y"
+  ],
+  "categories": {
+    "correctness": "error"
+  },
+  "rules": {},
+  "env": {
+    "builtin": true
+  },
+  "ignorePatterns": [
+    "src/routeTree.gen.ts"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "src/components/ui/item.tsx"
+      ],
+      "rules": {
+        "jsx-a11y/prefer-tag-over-role": "warn"
+      }
+    },
+    {
+      "files": [
+        "src/hooks/use-mobile.ts"
+      ],
+      "rules": {
+        "react/set-state-in-effect": "warn"
+      }
+    }
+  ]
+}

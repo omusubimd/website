@@ -1,5 +1,5 @@
 import { SiDiscord, SiGithub } from "@icons-pack/react-simple-icons";
-import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import {
 	LucideAstroid,
 	LucideEllipsis,
@@ -8,6 +8,7 @@ import {
 	LucideSpace,
 	LucideUnderline,
 } from "lucide-react";
+
 import { Button } from "~/components/ui/button";
 import {
 	Sidebar,
@@ -52,21 +53,25 @@ function RouteComponent() {
 							<SidebarGroupContent>
 								<SidebarMenu>
 									<SidebarMenuItem>
-										<SidebarMenuButton>
+										<SidebarMenuButton render={<Link to="/$" params={{ _splat: "syntax/ruby" }} />}>
 											<LucideGem />
 											ルビ
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 
 									<SidebarMenuItem>
-										<SidebarMenuButton>
+										<SidebarMenuButton
+											render={<Link to="/$" params={{ _splat: "syntax/annotation" }} />}
+										>
 											<LucideEllipsis />
 											傍点
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 
 									<SidebarMenuItem>
-										<SidebarMenuButton>
+										<SidebarMenuButton
+											render={<Link to="/$" params={{ _splat: "syntax/indent" }} />}
+										>
 											<LucideSpace />
 											字下げによる段落開始
 										</SidebarMenuButton>

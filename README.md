@@ -40,13 +40,18 @@ If you prefer not to use Tailwind CSS:
 
 ## Linting & Formatting
 
-This project uses [Biome](https://biomejs.dev/) for linting and formatting. The following scripts are available:
+This project uses [Oxfmt](https://oxc.rs/docs/guide/usage/formatter) for formatting and import sorting, and [Oxlint](https://oxc.rs/docs/guide/usage/linter) for linting. Formatting uses tabs (width 4), a 120-column line width, and double quotes. Generated routes and Markdown/MDX content are excluded. Oxlint uses correctness rules with TypeScript, React, and JSX accessibility plugins; these are not an exact equivalent of Biome's recommended rules.
+
+Two existing patterns remain warnings in their respective files: `role="list"` in `src/components/ui/item.tsx` and the initial viewport state update in `src/hooks/use-mobile.ts`.
+
+Install the recommended Oxc VS Code extension to use the project formatter and lint fixes in the editor. The following scripts are available:
 
 
 ```bash
-npm run lint
-npm run format
-npm run check
+npm run lint         # Check code with Oxlint
+npm run format       # Write formatting and import sorting changes
+npm run format:check # Check formatting without writing files
+npm run check        # Run formatting and lint checks (also used in CI)
 ```
 
 

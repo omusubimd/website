@@ -1,5 +1,6 @@
 import { mergeProps, useRender } from "@base-ui/react";
 import type { ReactElement } from "react";
+
 import { cn } from "~/lib/utils";
 
 export function Main({ render, className, ...props }: useRender.ComponentProps<"main">): ReactElement {
