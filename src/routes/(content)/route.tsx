@@ -5,6 +5,7 @@ import {
 	LucideEllipsis,
 	LucideExternalLink,
 	LucideGem,
+	LucidePyramid,
 	LucideSpace,
 	LucideUnderline,
 } from "lucide-react";
@@ -17,6 +18,7 @@ import {
 	SidebarGroup,
 	SidebarGroupContent,
 	SidebarGroupLabel,
+	SidebarHeader,
 	SidebarMenu,
 	SidebarMenuAction,
 	SidebarMenuButton,
@@ -34,7 +36,26 @@ function RouteComponent() {
 		<TooltipProvider>
 			<SidebarProvider>
 				<Sidebar>
+					<SidebarHeader>
+						<SidebarMenu>
+							<SidebarMenuItem>
+								<header className="flex flex-row items-center gap-2 p-2 select-none">
+									<LucidePyramid />
+									<span className="text-lg font-bold">おむすび大作戦</span>
+								</header>
+							</SidebarMenuItem>
+						</SidebarMenu>
+					</SidebarHeader>
+
 					<SidebarContent>
+						<SidebarGroup>
+							<SidebarMenu>
+								<SidebarMenuItem>
+									<SidebarMenuButton render={<Link to="/" />}>はじめましょう</SidebarMenuButton>
+								</SidebarMenuItem>
+							</SidebarMenu>
+						</SidebarGroup>
+
 						<SidebarGroup>
 							<SidebarGroupLabel>ガイド</SidebarGroupLabel>
 
