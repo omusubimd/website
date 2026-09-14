@@ -1,13 +1,6 @@
 import { SiDiscord, SiGithub } from "@icons-pack/react-simple-icons";
 import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
-import {
-	LucideAstroid,
-	LucideEllipsis,
-	LucideExternalLink,
-	LucideGem,
-	LucideSpace,
-	LucideUnderline,
-} from "lucide-react";
+import { LucideExternalLink, LucideGem, LucideSpace } from "lucide-react";
 
 import { OmusubiIcon } from "~/components/omusubi-icon";
 import { Button } from "~/components/ui/button";
@@ -51,7 +44,7 @@ function RouteComponent() {
 						<SidebarGroup>
 							<SidebarMenu>
 								<SidebarMenuItem>
-									<SidebarMenuButton render={<Link to="/" />}>はじめましょう</SidebarMenuButton>
+									<SidebarMenuButton render={<Link to="/" />}>これは何？</SidebarMenuButton>
 								</SidebarMenuItem>
 							</SidebarMenu>
 						</SidebarGroup>
@@ -62,7 +55,11 @@ function RouteComponent() {
 							<SidebarGroupContent>
 								<SidebarMenu>
 									<SidebarMenuItem>
-										<SidebarMenuButton>マークダウンとは？</SidebarMenuButton>
+										<SidebarMenuButton
+											render={<Link to="/$" params={{ _splat: "guide/markdown" }} />}
+										>
+											マークダウンとは？
+										</SidebarMenuButton>
 									</SidebarMenuItem>
 								</SidebarMenu>
 							</SidebarGroupContent>
@@ -82,26 +79,10 @@ function RouteComponent() {
 
 									<SidebarMenuItem>
 										<SidebarMenuButton
-											render={<Link to="/$" params={{ _splat: "syntax/annotation" }} />}
-										>
-											<LucideEllipsis />
-											傍点
-										</SidebarMenuButton>
-									</SidebarMenuItem>
-
-									<SidebarMenuItem>
-										<SidebarMenuButton
 											render={<Link to="/$" params={{ _splat: "syntax/indent" }} />}
 										>
 											<LucideSpace />
 											字下げによる段落開始
-										</SidebarMenuButton>
-									</SidebarMenuItem>
-
-									<SidebarMenuItem>
-										<SidebarMenuButton>
-											<LucideUnderline />
-											下線
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 								</SidebarMenu>
@@ -128,24 +109,47 @@ function RouteComponent() {
 						<SidebarMenu>
 							<SidebarMenuItem className="flex flex-row">
 								<Tooltip>
-									<TooltipTrigger render={<Button variant="ghost" size="icon" />}>
+									<TooltipTrigger
+										render={
+											<Button
+												variant="ghost"
+												size="icon"
+												render={
+													// oxlint-disable-next-line jsx-a11y/control-has-associated-label
+													<a
+														href="https://github.com/omusubimd"
+														target="_blank"
+														rel="noopener noreferrer"
+													/>
+												}
+											/>
+										}
+									>
 										<SiGithub aria-label="Github" />
 									</TooltipTrigger>
 									<TooltipContent>リポジトリ</TooltipContent>
 								</Tooltip>
 
 								<Tooltip>
-									<TooltipTrigger render={<Button variant="ghost" size="icon" />}>
+									<TooltipTrigger
+										render={
+											<Button
+												variant="ghost"
+												size="icon"
+												render={
+													// oxlint-disable-next-line jsx-a11y/control-has-associated-label
+													<a
+														href="https://discord.gg/2xCcZnjsa"
+														target="_blank"
+														rel="noopener noreferrer"
+													/>
+												}
+											/>
+										}
+									>
 										<SiDiscord aria-label="Discord" />
 									</TooltipTrigger>
 									<TooltipContent>コミュニティ</TooltipContent>
-								</Tooltip>
-
-								<Tooltip>
-									<TooltipTrigger render={<Button className="ml-auto" variant="ghost" size="icon" />}>
-										<LucideAstroid aria-label="AI" />
-									</TooltipTrigger>
-									<TooltipContent>AI</TooltipContent>
 								</Tooltip>
 							</SidebarMenuItem>
 						</SidebarMenu>
