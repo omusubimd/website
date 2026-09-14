@@ -21,7 +21,7 @@ const PackageOptions = {
 export type PackageType = keyof typeof PackageOptions;
 export type PackageStatus = "stable" | "beta" | "planned" | "not-started";
 
-const packageBadgeVariants = cva("h-6 px-2 flex items-center gap-1 rounded-sm text-xs select-none", {
+const packageBadgeVariants = cva("h-6 flex items-center gap-1 rounded-sm text-xs select-none", {
 	variants: {
 		status: {
 			stable: "",
@@ -102,7 +102,7 @@ function Link({
 }: { status: "stable" | "beta" | "planned"; url: string } & ComponentProps<typeof PackageBadge>) {
 	return (
 		<PackageBadge
-			className="no-underline"
+			className="no-underline font-normal"
 			type={type}
 			status={status}
 			// oxlint-disable-next-line jsx-a11y/anchor-has-content

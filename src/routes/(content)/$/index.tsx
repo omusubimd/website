@@ -27,7 +27,7 @@ function RouteComponent() {
 					<h1 className="text-3xl font-bold">{page.title}</h1>
 
 					{page.packages?.length ? (
-						<div className="mt-2 flex flex-wrap gap-2">
+						<div className="mt-2 flex flex-row flex-wrap gap-6">
 							{page.packages.map((pkg) =>
 								pkg.url && pkg.status !== "not-started" ? (
 									<PackageBadge.Link
