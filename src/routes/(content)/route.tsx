@@ -5,11 +5,11 @@ import {
 	LucideEllipsis,
 	LucideExternalLink,
 	LucideGem,
-	LucidePyramid,
 	LucideSpace,
 	LucideUnderline,
 } from "lucide-react";
 
+import { OmusubiIcon } from "~/components/omusubi-icon";
 import { Button } from "~/components/ui/button";
 import {
 	Sidebar,
@@ -40,7 +40,7 @@ function RouteComponent() {
 						<SidebarMenu>
 							<SidebarMenuItem>
 								<header className="flex flex-row items-center gap-2 p-2 select-none">
-									<LucidePyramid />
+									<OmusubiIcon className="size-6 shrink-0" />
 									<span className="text-lg font-bold">おむすび大作戦</span>
 								</header>
 							</SidebarMenuItem>
