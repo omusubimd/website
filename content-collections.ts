@@ -1,21 +1,30 @@
 import { defineCollection, defineConfig } from "@content-collections/core";
-import { compileMDX } from "@content-collections/mdx";
 import { Schema } from "effect";
 
 const pages = defineCollection({
 	name: "pages",
 	directory: "src/contents/pages",
-	include: ["**/*.md", "**/*.mdx"],
-	schema: Schema.standardSchemaV1(Schema.Struct({
-		title: Schema.String,
-	})),
-	transform: async (document, context) => {
-		const mdx = await compileMDX(context, document);
-		return {
-			...document,
-			mdx,
-		};
-	},
+	include: "**/*.md",
+	schema: Schema.standardSchemaV1(
+		Schema.Struct({
+			title: Schema.String,
+			content: Schema.String,
+			packages: Schema.optional(
+				Schema.Array(
+					Schema.Struct({
+						name: Schema.Literal("remark", "markdown-it"),
+						status: Schema.Union(
+							Schema.Literal("stable"),
+							Schema.Literal("beta"),
+							Schema.Literal("planned"),
+							Schema.Literal("not-started"),
+						),
+						url: Schema.optional(Schema.String),
+					}),
+				),
+			),
+		}),
+	),
 });
 
 export default defineConfig({

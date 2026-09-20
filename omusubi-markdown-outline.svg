@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none">
+  <title>おむすびマークダウン</title>
+  <rect width="256" height="256" fill="#fff"/>
+  <g stroke="#000" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M78 207C52 207 38 197 38 174C38 164 44 153 51 141L98 65C106 52 116 49 128 49C140 49 150 52 158 65L205 141C212 153 218 164 218 174C218 197 204 207 178 207Z"/>
+    <path d="M83 207V140Q83 134 89 134H101Q103 134 105 136L128 158L151 136Q153 134 155 134H167Q173 134 173 140V207"/>
+  </g>
+</svg>

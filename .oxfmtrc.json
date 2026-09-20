@@ -1,20 +1,17 @@
 {
-  "$schema": "./node_modules/oxfmt/configuration_schema.json",
-  "useTabs": true,
-  "tabWidth": 4,
-  "printWidth": 120,
-  "singleQuote": false,
-  "jsxSingleQuote": false,
-  "quoteProps": "as-needed",
-  "trailingComma": "all",
-  "semi": true,
-  "arrowParens": "always",
-  "bracketSameLine": false,
-  "bracketSpacing": true,
-  "ignorePatterns": [
-    "**/src/routeTree.gen.ts",
-    "**/*.md",
-    "**/*.mdx"
-  ],
-  "sortImports": {}
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"useTabs": true,
+	"tabWidth": 4,
+	"printWidth": 120,
+	"singleQuote": false,
+	"jsxSingleQuote": false,
+	"quoteProps": "as-needed",
+	"trailingComma": "all",
+	"semi": true,
+	"arrowParens": "always",
+	"bracketSameLine": false,
+	"bracketSpacing": true,
+	"ignorePatterns": ["**/src/routeTree.gen.ts", "**/*.md", "**/*.mdx"],
+	"sortImports": {},
+	"sortTailwindcss": true
 }

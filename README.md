@@ -2,6 +2,23 @@ Welcome to your new TanStack Start app!
 
 # Getting Started
 
+## Writing documentation
+
+Pages live in `src/contents/pages/**/*.md`, with a `title` in YAML frontmatter.
+Content Collections loads page content; `react-markdown` renders it using
+`remark-directive` and the custom `remarkSymbols` plugin.
+MDX, JSX, JavaScript expressions, and raw HTML are not supported in page content.
+
+Use `:symbol[|]{name="縦線"}` to insert a symbol chip. Escape brackets in the label:
+`:symbol[\[]{name="左角括弧"}` and `:symbol[\]]{name="右角括弧"}`.
+Fullwidth spaces are preserved: `:symbol[　]{name="全角スペース"}`.
+Only inline `symbol` directives with plain text and a `name` attribute are supported;
+invalid or unknown directives raise a rendering error. Code fences remain literal examples.
+
+The directive only passes the symbol and name to the `SymbolChip` React component.
+That component retains the original HoverCard, layout, and Toggle copy button.
+The copy icon changes to a check for two seconds, and both icons animate on entry.
+
 To run this application:
 
 ```bash
