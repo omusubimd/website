@@ -21,6 +21,9 @@ import {
 	SidebarMenuAction,
 	SidebarMenuButton,
 	SidebarMenuItem,
+	SidebarMenuSub,
+	SidebarMenuSubButton,
+	SidebarMenuSubItem,
 	SidebarProvider,
 } from "~/components/ui/sidebar";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "~/components/ui/tooltip";
@@ -42,6 +45,27 @@ function RouteComponent() {
 								<SidebarMenu>
 									<SidebarMenuItem>
 										<SidebarMenuButton>マークダウンとは？</SidebarMenuButton>
+									</SidebarMenuItem>
+								</SidebarMenu>
+
+								<SidebarMenu>
+									<SidebarMenuItem>
+										<SidebarMenuButton>インストール</SidebarMenuButton>
+
+										<SidebarMenuSub>
+											<SidebarMenuSubItem>
+												<SidebarMenuSubButton
+													render={
+														<Link
+															to="/$"
+															params={{ _splat: "guide/installation/javascript" }}
+														/>
+													}
+												>
+													JavaScript / TypeScript
+												</SidebarMenuSubButton>
+											</SidebarMenuSubItem>
+										</SidebarMenuSub>
 									</SidebarMenuItem>
 								</SidebarMenu>
 							</SidebarGroupContent>

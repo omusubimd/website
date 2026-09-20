@@ -8,7 +8,7 @@ import { useMDXComponents } from "../../../../mdx-components";
 
 export const Route = createFileRoute("/(content)/$/")({
 	loader: ({ params }) => {
-		const page = allPages.find((p) => p._meta.path.replace("\\", "/") === params._splat);
+		const page = allPages.find((p) => p._meta.path.replaceAll("\\", "/") === params._splat);
 		if (!page) {
 			throw notFound();
 		}
