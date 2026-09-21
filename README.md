@@ -1,239 +1,82 @@
-Welcome to your new TanStack Start app! 
+# おむすび大作戦
 
-# Getting Started
+おむすび大作戦は、日本語の文章表記に馴染みやすいMarkdown記法を定め、その実装を提供するオープンソースプロジェクトです。
 
-## Writing documentation
+日本語の文章表現をMarkdownで扱えるようにすることを目的として、記法の仕様、各種言語およびフレームワーク向けパッケージを整備しています。꒰ UoxoU ꒱が立ち上げ、コントリビューターとともに開発しています。
 
-Pages live in `src/contents/pages/**/*.md`, with a `title` in YAML frontmatter.
-Content Collections loads page content; `react-markdown` renders it using
-`remark-directive` and the custom `remarkSymbols` plugin.
-MDX, JSX, JavaScript expressions, and raw HTML are not supported in page content.
+- [ウェブサイト](https://omusubimd.uoxou.moe/)
+- [Playground](https://omusubimd.uoxou.moe/playground)
+- [GitHub Organization](https://github.com/omusubimd)
+- [Discord](https://discord.gg/2xCcZnjsa)
 
-Use `:symbol[|]{name="縦線"}` to insert a symbol chip. Escape brackets in the label:
-`:symbol[\[]{name="左角括弧"}` and `:symbol[\]]{name="右角括弧"}`.
-Fullwidth spaces are preserved: `:symbol[　]{name="全角スペース"}`.
-Only inline `symbol` directives with plain text and a `name` attribute are supported;
-invalid or unknown directives raise a rendering error. Code fences remain literal examples.
+> [!NOTE]
+> おむすび大作戦は開発初期のプロジェクトです。記法の仕様やパッケージのAPIは、今後変更される可能性があります。
 
-The directive only passes the symbol and name to the `SymbolChip` React component.
-That component retains the original HoverCard, layout, and Toggle copy button.
-The copy icon changes to a check for two seconds, and both icons animate on entry.
+## 現在利用できる記法
 
-To run this application:
+### ルビ
 
-```bash
+Markdown上で、ルビを振る対象と読みを明示的に記述するための記法です。モノルビとグループルビに対応しています。
+
+- [記法の仕様](https://omusubimd.uoxou.moe/syntax/ruby)
+- [`@omusubimd/remark-omusubi-ruby`](https://www.npmjs.com/package/@omusubimd/remark-omusubi-ruby)
+
+### 字下げによる段落開始
+
+行頭の全角スペースを、日本語の文章における段落開始として扱うための記法です。
+
+- [記法の仕様](https://omusubimd.uoxou.moe/syntax/indent)
+- [`@omusubimd/remark-omusubi-indent`](https://www.npmjs.com/package/@omusubimd/remark-omusubi-indent)
+
+より低レイヤーのmicromark / mdast向けパッケージを含む実装一覧は、[`omusubimd/packages-unified`](https://github.com/omusubimd/packages-unified)を参照してください。
+
+## このリポジトリについて
+
+このリポジトリには、[おむすび大作戦のウェブサイト](https://omusubimd.uoxou.moe/)と記法のドキュメントが含まれています。
+
+主な技術構成は次のとおりです。
+
+- TanStack Start / TanStack Router
+- React
+- Tailwind CSS
+- Content Collections
+- Cloudflare Workers
+
+## 開発
+
+Node.js 24とnpmを使用します。
+
+```sh
 npm install
 npm run dev
 ```
 
-# Building For Production
+ローカルサーバーは、デフォルトで`http://localhost:3000`に起動します。
 
-To build this application for production:
+### 主なコマンド
 
-```bash
-npm run build
+```sh
+npm run dev      # 開発サーバーを起動
+npm test         # テストを実行
+npm run check    # フォーマットとLintを確認
+npm run build    # 本番用にビルド
 ```
 
-## Testing
+ドキュメントのページは`src/contents/pages/**/*.md`、ルートとUIは`src/routes`および`src/components`にあります。
 
-This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
+## コントリビューション
 
-```bash
-npm run test
-```
+記法の提案、実装、ドキュメントの改善、バグ報告などのコントリビューションを歓迎します。
 
-## Styling
+- 不具合や提案は[Issue](https://github.com/omusubimd/website/issues)へお寄せください。
+- 実装やドキュメントの変更はPull Requestで受け付けています。
+- 記法について相談したい場合は[Discord](https://discord.gg/2xCcZnjsa)も利用できます。
 
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
+## 関連リポジトリ
 
-### Removing Tailwind CSS
+- [`omusubimd/website`](https://github.com/omusubimd/website) — ウェブサイトと記法ドキュメント
+- [`omusubimd/packages-unified`](https://github.com/omusubimd/packages-unified) — unified / remark / micromark / mdast向け実装
 
-If you prefer not to use Tailwind CSS:
+## ライセンス
 
-1. Remove the demo pages in `src/routes/demo/`
-2. Replace the Tailwind import in `src/styles.css` with your own styles
-3. Remove `tailwindcss()` from the plugins array in `vite.config.ts`
-4. Uninstall the packages: `npm install @tailwindcss/vite tailwindcss -D`
-
-## Linting & Formatting
-
-This project uses [Oxfmt](https://oxc.rs/docs/guide/usage/formatter) for formatting and import sorting, and [Oxlint](https://oxc.rs/docs/guide/usage/linter) for linting. Formatting uses tabs (width 4), a 120-column line width, and double quotes. Generated routes and Markdown/MDX content are excluded. Oxlint uses correctness rules with TypeScript, React, and JSX accessibility plugins; these are not an exact equivalent of Biome's recommended rules.
-
-Two existing patterns remain warnings in their respective files: `role="list"` in `src/components/ui/item.tsx` and the initial viewport state update in `src/hooks/use-mobile.ts`.
-
-Install the recommended Oxc VS Code extension to use the project formatter and lint fixes in the editor. The following scripts are available:
-
-
-```bash
-npm run lint         # Check code with Oxlint
-npm run format       # Write formatting and import sorting changes
-npm run format:check # Check formatting without writing files
-npm run check        # Run formatting and lint checks (also used in CI)
-```
-
-
-## Deploy to Cloudflare Workers
-
-This project uses the Cloudflare Vite plugin (configured in `vite.config.ts`) and `wrangler.jsonc`:
-
-1. Install Wrangler: `npm install -g wrangler`
-2. Authenticate: `wrangler login`
-3. Deploy: `npx wrangler deploy`
-
-For production env vars, run `wrangler secret put MY_VAR` for each secret listed in `.env.example`. Public (non-secret) vars go in `wrangler.jsonc` under `vars`.
-
-KV, D1, R2, and Durable Object bindings are configured in `wrangler.jsonc` — see https://developers.cloudflare.com/workers/wrangler/configuration/.
-
-
-
-## Routing
-
-This project uses [TanStack Router](https://tanstack.com/router) with file-based routing. Routes are managed as files in `src/routes`.
-
-### Adding A Route
-
-To add a new route to your application just add a new file in the `./src/routes` directory.
-
-TanStack will automatically generate the content of the route file for you.
-
-Now that you have two routes you can use a `Link` component to navigate between them.
-
-### Adding Links
-
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
-
-```tsx
-import { Link } from "@tanstack/react-router";
-```
-
-Then anywhere in your JSX you can use it like so:
-
-```tsx
-<Link to="/about">About</Link>
-```
-
-This will create a link that will navigate to the `/about` route.
-
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
-
-### Using A Layout
-
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you render `{children}` in the `shellComponent`.
-
-Here is an example layout that includes a header:
-
-```tsx
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-
-export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'My App' },
-    ],
-  }),
-  shellComponent: ({ children }) => (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <header>
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-          </nav>
-        </header>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  ),
-})
-```
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
-## Server Functions
-
-TanStack Start provides server functions that allow you to write server-side code that seamlessly integrates with your client components.
-
-```tsx
-import { createServerFn } from '@tanstack/react-start'
-
-const getServerTime = createServerFn({
-  method: 'GET',
-}).handler(async () => {
-  return new Date().toISOString()
-})
-
-// Use in a component
-function MyComponent() {
-  const [time, setTime] = useState('')
-  
-  useEffect(() => {
-    getServerTime().then(setTime)
-  }, [])
-  
-  return <div>Server time: {time}</div>
-}
-```
-
-## API Routes
-
-You can create API routes by using the `server` property in your route definitions:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-import { json } from '@tanstack/react-start'
-
-export const Route = createFileRoute('/api/hello')({
-  server: {
-    handlers: {
-      GET: () => json({ message: 'Hello, World!' }),
-    },
-  },
-})
-```
-
-## Data Fetching
-
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
-
-For example:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-
-export const Route = createFileRoute('/people')({
-  loader: async () => {
-    const response = await fetch('https://swapi.dev/api/people')
-    return response.json()
-  },
-  component: PeopleComponent,
-})
-
-function PeopleComponent() {
-  const data = Route.useLoaderData()
-  return (
-    <ul>
-      {data.results.map((person) => (
-        <li key={person.name}>{person.name}</li>
-      ))}
-    </ul>
-  )
-}
-```
-
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
-
-# Demo files
-
-Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
-
-# Learn More
-
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
-
-For TanStack Start specific documentation, visit [TanStack Start](https://tanstack.com/start).
+[MIT License](./LICENSE) © 2026 ꒰ UoxoU ꒱ and contributors
