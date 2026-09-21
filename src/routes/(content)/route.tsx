@@ -1,6 +1,6 @@
 import { SiDiscord, SiGithub } from "@icons-pack/react-simple-icons";
 import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
-import { LucideExternalLink, LucideGem, LucideSpace } from "lucide-react";
+import { LucideExternalLink, LucideFlaskConical, LucideGem, LucideSpace } from "lucide-react";
 
 import { OmusubiIcon } from "~/components/omusubi-icon";
 import { Button } from "~/components/ui/button";
@@ -59,6 +59,22 @@ function RouteComponent() {
 											render={<Link to="/$" params={{ _splat: "guide/markdown" }} />}
 										>
 											マークダウンとは？
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+								</SidebarMenu>
+							</SidebarGroupContent>
+						</SidebarGroup>
+
+						<SidebarGroup>
+							<SidebarGroupLabel>試す</SidebarGroupLabel>
+							<SidebarGroupContent>
+								<SidebarMenu>
+									<SidebarMenuItem>
+										<SidebarMenuButton
+											render={<Link to="/playground" />}
+										>
+											<LucideFlaskConical />
+											Playground
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 								</SidebarMenu>

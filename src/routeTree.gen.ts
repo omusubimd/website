@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as contentRouteRouteImport } from './routes/(content)/route'
 import { Route as contentIndexRouteImport } from './routes/(content)/index'
+import { Route as contentPlaygroundRouteImport } from './routes/(content)/playground'
 import { Route as contentSplatIndexRouteImport } from './routes/(content)/$/index'
 
 const contentRouteRoute = contentRouteRouteImport.update({
@@ -22,6 +23,11 @@ const contentIndexRoute = contentIndexRouteImport.update({
   path: '/',
   getParentRoute: () => contentRouteRoute,
 } as any)
+const contentPlaygroundRoute = contentPlaygroundRouteImport.update({
+  id: '/playground',
+  path: '/playground',
+  getParentRoute: () => contentRouteRoute,
+} as any)
 const contentSplatIndexRoute = contentSplatIndexRouteImport.update({
   id: '/$/',
   path: '/$/',
@@ -29,25 +35,33 @@ const contentSplatIndexRoute = contentSplatIndexRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/playground': typeof contentPlaygroundRoute
   '/': typeof contentIndexRoute
   '/$/': typeof contentSplatIndexRoute
 }
 export interface FileRoutesByTo {
+  '/playground': typeof contentPlaygroundRoute
   '/': typeof contentIndexRoute
   '/$': typeof contentSplatIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/(content)': typeof contentRouteRouteWithChildren
+  '/(content)/playground': typeof contentPlaygroundRoute
   '/(content)/': typeof contentIndexRoute
   '/(content)/$/': typeof contentSplatIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$/'
+  fullPaths: '/playground' | '/' | '/$/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$'
-  id: '__root__' | '/(content)' | '/(content)/' | '/(content)/$/'
+  to: '/playground' | '/' | '/$'
+  id:
+    | '__root__'
+    | '/(content)'
+    | '/(content)/playground'
+    | '/(content)/'
+    | '/(content)/$/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -70,6 +84,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof contentIndexRouteImport
       parentRoute: typeof contentRouteRoute
     }
+    '/(content)/playground': {
+      id: '/(content)/playground'
+      path: '/playground'
+      fullPath: '/playground'
+      preLoaderRoute: typeof contentPlaygroundRouteImport
+      parentRoute: typeof contentRouteRoute
+    }
     '/(content)/$/': {
       id: '/(content)/$/'
       path: '/$'
@@ -81,11 +102,13 @@ declare module '@tanstack/react-router' {
 }
 
 interface contentRouteRouteChildren {
+  contentPlaygroundRoute: typeof contentPlaygroundRoute
   contentIndexRoute: typeof contentIndexRoute
   contentSplatIndexRoute: typeof contentSplatIndexRoute
 }
 
 const contentRouteRouteChildren: contentRouteRouteChildren = {
+  contentPlaygroundRoute: contentPlaygroundRoute,
   contentIndexRoute: contentIndexRoute,
   contentSplatIndexRoute: contentSplatIndexRoute,
 }

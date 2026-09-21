@@ -1,3 +1,5 @@
+import { remarkOmusubiIndent } from "@omusubimd/remark-omusubi-indent";
+import { remarkOmusubiRuby } from "@omusubimd/remark-omusubi-ruby";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkDirective from "remark-directive";
 
@@ -17,7 +19,11 @@ const components: Components = {
 
 export function MarkdownContent({ content }: { content: string }) {
 	return (
-		<ReactMarkdown remarkPlugins={[remarkDirective, remarkSymbols]} components={components} skipHtml>
+		<ReactMarkdown
+			remarkPlugins={[remarkDirective, remarkSymbols, remarkOmusubiRuby, remarkOmusubiIndent]}
+			components={components}
+			skipHtml
+		>
 			{content}
 		</ReactMarkdown>
 	);
