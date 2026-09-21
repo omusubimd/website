@@ -15,7 +15,27 @@ export const Route = createRootRoute({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "TanStack Start Starter",
+				name: "description",
+				content: "おむすび大作戦は、日本語の文章表記に馴染みやすいマークダウン記法を提供するプロジェクトです。",
+			},
+			{
+				title: "おむすび大作戦 ┊︎ 日本語のためのマークダウン",
+			},
+			{
+				name: "og:title",
+				content: "おむすび大作戦 ┊︎ 日本語のためのマークダウン",
+			},
+			{
+				name: "og:description",
+				content: "おむすび大作戦は、日本語の文章表記に馴染みやすいマークダウン記法を提供するプロジェクトです。",
+			},
+			{
+				name: "og:image",
+				content: "/og.png",
+			},
+			{
+				name: "og:url",
+				content: "https://omusubimd.uoxou.moe/",
 			},
 		],
 		links: [
@@ -43,10 +63,11 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en">
+		<html lang="ja">
 			<head>
 				<HeadContent />
 			</head>
+
 			<body>
 				{children}
 				<TanStackDevtools
