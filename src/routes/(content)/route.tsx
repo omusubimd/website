@@ -70,9 +70,7 @@ function RouteComponent() {
 							<SidebarGroupContent>
 								<SidebarMenu>
 									<SidebarMenuItem>
-										<SidebarMenuButton
-											render={<Link to="/playground" />}
-										>
+										<SidebarMenuButton render={<Link to="/playground" />}>
 											<LucideFlaskConical />
 											Playground
 										</SidebarMenuButton>

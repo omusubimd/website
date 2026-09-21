@@ -102,7 +102,7 @@ function Link({
 }: { status: "stable" | "beta" | "planned"; url: string } & ComponentProps<typeof PackageBadge>) {
 	return (
 		<PackageBadge
-			className="no-underline font-normal"
+			className="font-normal no-underline"
 			type={type}
 			status={status}
 			// oxlint-disable-next-line jsx-a11y/anchor-has-content
