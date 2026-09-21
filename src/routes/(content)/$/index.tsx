@@ -1,5 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { allPages } from "content-collections";
+import { Option } from "effect";
 
 import { Main } from "~/components/Main";
 import { MarkdownContent } from "~/components/MarkdownContent";
@@ -14,6 +15,15 @@ export const Route = createFileRoute("/(content)/$/")({
 
 		return page;
 	},
+	head: ({ loaderData }) => ({
+		meta: [
+			{
+				title: Option.fromNullable(loaderData?.title)
+					.pipe(Option.map((title) => `${title} ┊︎ おむすび大作戦`))
+					.pipe(Option.getOrUndefined),
+			},
+		],
+	}),
 	component: RouteComponent,
 });
 
