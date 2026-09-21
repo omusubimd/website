@@ -1,5 +1,11 @@
 ---
 title: 字下げによる段落開始
+packages:
+  - name: remark
+    status: beta
+    url: https://www.npmjs.com/package/@omusubimd/remark-omusubi-indent
+  - name: markdown-it
+    status: not-started
 ---
 
 一般的なマークダウン記法では、段落の開始は空行のあとにテキストを記述することで表現されます。Omusubiでは、これに加えて、日本語の文章表記で馴染みやすい形で、先頭に空白を挿入することで段落の開始を表現することができます。
